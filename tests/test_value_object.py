@@ -9,26 +9,27 @@
 # that they have been altered from the originals.
 
 import unittest
+from dataclasses import dataclass
+from ddd import ValueObject, ValueObjectInmutableError
 
-from ddd import ValueObject
 
-
-class TestValueObject(ValueObject):
-    def __init__(self, field1, field2, field3):
-        self.field1 = field1
-        self.field2 = field2
-        self.field3 = field3
+@dataclass(frozen=True, eq=False)
+class MyValueObject(ValueObject):
+    field1: str
+    field2: int
+    field3: dict
 
 
 class TestValueObject(unittest.TestCase):
     def setUp(self):
         pass
 
-    def test_value_object_is_inmutable(self):
-        self.assertEqual(False, True)
-
     def test_two_equal_value_objects_are_equal(self):
-        self.assertEqual(True, False)
+        obj1 = MyValueObject(1, "2", {"3": "4"})
+        obj2 = MyValueObject(1, "2", {"3": "4"})
+        self.assertEqual(obj1, obj2)
 
     def test_different_value_objects_are_different(self):
-        self.assertEqual(True, False)
+        obj1 = MyValueObject(1, "2", {"3": "4"})
+        obj2 = MyValueObject(2, "2", {"3": "4"})
+        self.assertNotEqual(obj1, obj2)

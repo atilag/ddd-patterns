@@ -8,14 +8,8 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-from abc import ABC
 
-
-class ValueObjectInmutableError(Exception):
-    pass
-
-
-class ValueObject(ABC):
+class ValueObject:
     def __eq__(self, rhs):
         if not isinstance(rhs, self.__class__):
             return False
@@ -23,6 +17,3 @@ class ValueObject(ABC):
 
     def __ne__(self, rhs):
         return not self.__eq__(rhs)
-
-    def __setattr__(self, name, value):
-        raise ValueObjectInmutableError()
