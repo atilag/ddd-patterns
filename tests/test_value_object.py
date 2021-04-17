@@ -8,7 +8,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-import unittest
+import pytest
 from dataclasses import dataclass
 from ddd import ValueObject, ValueObjectInmutableError
 
@@ -20,16 +20,13 @@ class MyValueObject(ValueObject):
     field3: dict
 
 
-class TestValueObject(unittest.TestCase):
-    def setUp(self):
-        pass
-
+class TestValueObject:
     def test_two_equal_value_objects_are_equal(self):
         obj1 = MyValueObject(1, "2", {"3": "4"})
         obj2 = MyValueObject(1, "2", {"3": "4"})
-        self.assertEqual(obj1, obj2)
+        assert obj1 == obj2
 
     def test_different_value_objects_are_different(self):
         obj1 = MyValueObject(1, "2", {"3": "4"})
         obj2 = MyValueObject(2, "2", {"3": "4"})
-        self.assertNotEqual(obj1, obj2)
+        assert obj1 != obj2

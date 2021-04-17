@@ -8,5 +8,14 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-from .value_object import ValueObject, ValueObjectInmutableError
-from .entity import Entity
+import uuid
+
+
+class Entity:
+    def __init__(self):
+        # uuid4() is random UUID
+        self._id = uuid.uuid4()
+
+    @property.getter
+    def id(self):
+        return self._id

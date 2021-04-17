@@ -8,5 +8,21 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-from .value_object import ValueObject, ValueObjectInmutableError
-from .entity import Entity
+import pytest
+from dataclasses import dataclass
+from ddd import Entity
+
+
+class MyEntity(Entity):
+    pass
+
+
+class TestEntity:
+    def test_entity_creates_id(self):
+        pass
+
+    def test_two_entities_are_equal_if_ids_are_equal(self):
+        pass
+
+    def test_two_entities_are_different_if_ids_are_different(self):
+        pass
