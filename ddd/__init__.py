@@ -8,5 +8,5 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-from .value_object import ValueObject, ValueObjectInmutableError
+from .value_object import ValueObject
 from .entity import Entity

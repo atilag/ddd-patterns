@@ -8,6 +8,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
+import uuid
 import pytest
 from dataclasses import dataclass
 from ddd import Entity
@@ -19,10 +20,14 @@ class MyEntity(Entity):
 
 class TestEntity:
     def test_entity_creates_id(self):
-        pass
+        assert MyEntity(id="123456").id == "123456"
 
     def test_two_entities_are_equal_if_ids_are_equal(self):
-        pass
+        entity1 = MyEntity(id="12345678")
+        entity2 = MyEntity(id="12345678")
+        assert entity1 == entity2
 
     def test_two_entities_are_different_if_ids_are_different(self):
-        pass
+        entity1 = MyEntity()
+        entity2 = MyEntity()
+        assert entity1 != entity2

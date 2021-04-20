@@ -10,7 +10,7 @@
 
 import pytest
 from dataclasses import dataclass
-from ddd import ValueObject, ValueObjectInmutableError
+from ddd import ValueObject
 
 
 @dataclass(frozen=True, eq=False)

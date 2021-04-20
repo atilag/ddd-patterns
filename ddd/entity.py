@@ -12,10 +12,18 @@ import uuid
 
 
 class Entity:
-    def __init__(self):
+    def __init__(self, id=None):
         # uuid4() is random UUID
-        self._id = uuid.uuid4()
+        self._id = uuid.uuid4() if id is None else id
 
-    @property.getter
+    @property
     def id(self):
-        return self._id
+        return str(self._id)
+
+    def __eq__(self, rhs):
+        if not isinstance(rhs, self.__class__):
+            return False
+        return self._id == rhs._id
+
+    def __ne__(self, rhs):
+        return not self.__eq__(rhs)
